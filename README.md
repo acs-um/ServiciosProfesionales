@@ -6,5 +6,3 @@ Martín Rojo
 Alvaro Bruseghini
 ## Profesores
 Matias Varela
-
->>>>>>> master
