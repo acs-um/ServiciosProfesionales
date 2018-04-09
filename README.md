@@ -1,7 +1,12 @@
 # ServiciosProfesionales
 Red de profesionales
+
 ## Alumnos
-Alvaro Bruseghini
-Leandro Sabio
+- Brenda Martinez
+- Martín Rojo
+- Alvaro Bruseghini
+- Perla Padilla
+- Leadro Sabio
+
 ## Profesores
 Matias Varela
