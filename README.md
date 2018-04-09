@@ -6,6 +6,7 @@ Red de profesionales
 - Martín Rojo
 - Alvaro Bruseghini
 - Perla Padilla
+- Leadro Sabio
 
 ## Profesores
 Matias Varela
