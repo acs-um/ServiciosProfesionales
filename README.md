@@ -2,8 +2,10 @@
 Red de profesionales
 
 ## Alumnos
--Martín Rojo
--Alvaro Bruseghini
--Perla Padilla
+- Brenda Martinez
+- Martín Rojo
+- Alvaro Bruseghini
+- Perla Padilla
+
 ## Profesores
 Matias Varela
