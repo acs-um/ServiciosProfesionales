@@ -15,8 +15,8 @@ class UserCreationForm(forms.ModelForm):
     password2 = forms.CharField(label='Password confrmation', widget=forms.PasswordInput)
 
     class Meta:
-        model = MyUser
-        fields = ('email', 'date_of_birth')
+        model = MyUser #le estamos diciendo que modelo tiene que usar para crear el formulario
+        fields = ('email', 'date_of_birth', 'first_name', 'last_name')
 
     def clean_password2(self):
         #verifique que las dos entradas de contraseña coinciden
@@ -43,7 +43,7 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = MyUser
-        fields = ('emal', 'password', 'date_of_birth', 'is_active', 'is_admin')
+        fields = ('email', 'password', 'date_of_birth', 'is_active', 'is_admin')
 
     def clean_password(self):
         #Independientemente de lo que el usuario proporcione, devuelva el valor inicial.
