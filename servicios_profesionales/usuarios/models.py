@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser)
 
-class MyUserManager(BaseUserManager):
+class MyUserManager(BaseUserManager): #maneja mi user en la bd
     #use_in_migrations = True
     
     def create_user(self, email, date_of_birth, first_name, last_name, password=None):

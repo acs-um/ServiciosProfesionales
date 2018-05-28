@@ -53,7 +53,7 @@ class UserChangeForm(forms.ModelForm):
 
 class UserAdmin(BaseUserAdmin):
     #los formularios para agregar y cambiar instancias de usuario
-    form = UserChangeForm
+    forms = UserChangeForm
     add_form = UserCreationForm
     
 
