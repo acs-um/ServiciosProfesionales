@@ -7,7 +7,7 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from usuarios.models import MyUser
 
 # Register your models here.
-
+#para registrar el modelo de usuario personalizado con el administrador de Django se modifica este archivo
 class UserCreationForm(forms.ModelForm):
     # Un formulario para crear nuevos usuarios. 
     # Incluye todo lo requerido campos, más una contraseña repetida 
@@ -82,6 +82,10 @@ class UserAdmin(BaseUserAdmin):
 
     # Ahora registre el nuevo UserAdmin ...
     admin.site.register(MyUser)
+<<<<<<< HEAD
+=======
+    admin.site.register(UserAdmin)
+>>>>>>> hoy 17 cambiso minimos
 
     # ... y, dado que no estamos usando los permisos incorporados de Django,
     # anular el registro del modelo de grupo de admin.

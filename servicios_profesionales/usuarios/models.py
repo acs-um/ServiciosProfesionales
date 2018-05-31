@@ -45,6 +45,7 @@ class MyUser(AbstractBaseUser):
         max_length= 255,
         unique=True,
         ) #para que sea unico
+    date_of_birth = models.DateTimeField ()
     first_name = models.CharField(
         verbose_name= 'first_name',
         max_length=30, 
@@ -55,7 +56,7 @@ class MyUser(AbstractBaseUser):
         max_length=30, 
         blank=True,
         )
-    date_of_birth = models.DateTimeField ()
+  
     is_active = models.BooleanField(default=True) #atributo que devuelve True si la cuenta de usuario está actualmente activa.
     is_admin = models.BooleanField(default=False)
 
