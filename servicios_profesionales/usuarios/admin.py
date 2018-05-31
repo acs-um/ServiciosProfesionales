@@ -82,14 +82,7 @@ class UserAdmin(BaseUserAdmin):
 
     # Ahora registre el nuevo UserAdmin ...
     admin.site.register(MyUser)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    admin.site.register(UserAdmin)
->>>>>>> hoy 17 cambiso minimos
-=======
   #  admin.site.register(UserAdmin)
->>>>>>>  se hizo migraciones
 
     # ... y, dado que no estamos usando los permisos incorporados de Django,
     # anular el registro del modelo de grupo de admin.
