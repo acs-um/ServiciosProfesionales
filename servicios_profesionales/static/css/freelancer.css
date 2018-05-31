@@ -40,7 +40,7 @@ hr.star-light {
 
 hr.star-light:after {
   color: #fff;
-  background-color: #18BC9C;
+  background-color: #000000;
 }
 
 hr.star-dark {
@@ -57,7 +57,7 @@ section {
 }
 
 section h2 {
-  font-size: 2.25rem;
+  font-size: 1.5rem;
   line-height: 2rem;
 }
 
@@ -127,20 +127,20 @@ section h2 {
 }
 
 #mainNav .navbar-toggler {
-  font-size: 80%;
+  font-size: 50%;
   padding: 0.8rem;
 }
 
 @media (min-width: 992px) {
   #mainNav {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     -webkit-transition: padding-top 0.3s, padding-bottom 0.3s;
     -moz-transition: padding-top 0.3s, padding-bottom 0.3s;
     transition: padding-top 0.3s, padding-bottom 0.3s;
   }
   #mainNav .navbar-brand {
-    font-size: 2em;
+    font-size: 1.2em;
     -webkit-transition: font-size 0.3s;
     -moz-transition: font-size 0.3s;
     transition: font-size 0.3s;
@@ -157,11 +157,11 @@ section h2 {
     background: #18BC9C;
   }
   #mainNav.navbar-shrink {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding-top: 0rem;
+    padding-bottom: 0rem;
   }
   #mainNav.navbar-shrink .navbar-brand {
-    font-size: 1.5em;
+    font-size: 1rem;
   }
 }
 
@@ -344,11 +344,11 @@ a:focus, a:hover, a:active {
 }
 
 .bg-primary {
-  background-color: #18BC9C !important;
+  background-color: #2cbdd6 !important;
 }
 
 .bg-secondary {
-  background-color: #2C3E50 !important;
+  background-color: #000000 !important;
 }
 
 .text-primary {
