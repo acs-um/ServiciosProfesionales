@@ -30,19 +30,21 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
-    'Categorias.apps.CategoriasConfig',
+INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'servicios',
+    'comentarios',
+    'Categorias',
     'photologue',
     'sortedm2m',
-    'servicios',
-    'django.contrib.sites',
-]
+    'taggit',
+)
 
 SITE_ID = 1
 
