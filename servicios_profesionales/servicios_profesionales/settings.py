@@ -25,7 +25,8 @@ SECRET_KEY = '7u1t+@)6wj(oq(1-+4sck#(ly-ziv=^oee*nc7068q0u39)(@n'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [ ]
+
 
 
 # Application definition
@@ -137,4 +138,9 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "../media/")
 MEDIA_URL = '/media/'
+
+
+AUTH_USER_MODEL = 'usuarios.MyUser'
+#Este par de puntos describe el nombre de la aplicación Django (que debe estar en su INSTALLED_APPS) 
+# y el nombre del modelo Django que desea usar como modelo de usuario. 
 
