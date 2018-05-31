@@ -27,4 +27,4 @@ def signup(request):
         'form': form,
     }
 
-    return render_to_response('usuarios/signup.html', data)
+    return render_to_response('/index.html', data)
