@@ -7,3 +7,6 @@ class Service(models.Model):
     description = models.TextField
 
     tags = TaggableManager()
+
+    def __str__(self):
+        return self.name
