@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'servicios',
     'comentarios',
+    'Categorias',
     'photologue',
     'sortedm2m',
     'taggit',
