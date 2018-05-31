@@ -20,6 +20,7 @@ from django.conf import settings
 from django.views.static import serve
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
+from usuarios import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,4 +30,5 @@ urlpatterns = [
         }),
     url(r'^servicios/', include('servicios.urls')),
     url(r'^$', TemplateView.as_view(template_name='index.html')),
+    url(r'^usuarios/', include('usuarios.urls')),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
