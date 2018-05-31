@@ -1,3 +1,9 @@
 from django.db import models
 
-# Create your models here.
+from taggit.managers import TaggableManager
+
+class Service(models.Model):
+    name = models.CharField(max_length=30)
+    description = models.TextField
+
+    tags = TaggableManager()
