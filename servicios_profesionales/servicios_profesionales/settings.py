@@ -137,3 +137,8 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = os.path.join(BASE_DIR, "../media/")
 MEDIA_URL = '/media/'
 
+
+AUTH_USER_MODEL = 'usuarios.MyUser'
+#Este par de puntos describe el nombre de la aplicación Django (que debe estar en su INSTALLED_APPS) 
+# y el nombre del modelo Django que desea usar como modelo de usuario. 
+
