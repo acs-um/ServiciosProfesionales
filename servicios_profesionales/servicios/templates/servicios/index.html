@@ -1,5 +1,28 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
 {% block content %}
-
+<section class="bg-primary text-white mb-0" id="service">
+  <div class="container">
+    <h2 class="text-center text-uppercase text-white">Servicios y Categorias</h2>
+      <table align="center">
+    <hr class="star-light mb-5">
+    <div class="row">
+        <div class="col-lg-4" size="35">
+            <td><b>Servicio</b></td>
+        </div>
+        <div class="col-lg-4">
+            <td><b>Categoria</b></td>
+        </div>
+            {% for service in service_list %}
+            <tr>
+            <div class="col-lg-4 ml-auto">
+                <td><h5>{{ service.name }}</h5></td>
+            </div>
+            <div class="col-lg-4 mr-auto">
+                <td><small>{{ service.category }}</small></td>
+            </div>
+            {% endfor %}
+        </table>
+    </div>
+  </div>
+</section>
 {% endblock %}

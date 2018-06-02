@@ -27,6 +27,6 @@ urlpatterns = [
     url(r'^media/(?P<path>.*)$', serve, {
             'document_root': settings.MEDIA_ROOT,
         }),
-   # url(r'^servicios/', include('servicios.urls')),
+    url(r'^servicios/', include('servicios.urls')),
     url(r'^$', TemplateView.as_view(template_name='index.html')),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
