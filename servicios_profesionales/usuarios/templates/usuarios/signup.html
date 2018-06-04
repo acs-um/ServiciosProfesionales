@@ -10,9 +10,10 @@
     <hr class="star-dark mb-5">
     <div class="row">
       <div class="col-lg-8 mx-auto">
-        <form id="registroForm" novalidate="novalidate" method = "POST">{% csrf_token %}
+        <form id="registroForm" novalidate="novalidate" method = "POST">
           <div class="control-group">
             <div class="form-group controls mb-0 pb-2">
+              {% csrf_token %}
               {{form.as_ul}}
               <p class="help-block text-danger"></p>
             </div>
