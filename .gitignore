@@ -100,4 +100,6 @@ ENV/
 # mypy
 .mypy_cache/
 servicios_profesionales/db.sqlite3
-.vscode/settings.json
+.vscode/
+
+db.sqlite3
