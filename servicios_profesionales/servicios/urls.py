@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name="all-services"),
-    #path('ingresar', views.signup, name = "SignUp"),
+    #url(r'^search/$', views.search, name="search-service"),
 ]

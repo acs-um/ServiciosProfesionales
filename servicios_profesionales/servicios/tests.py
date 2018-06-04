@@ -35,3 +35,6 @@ class ServiceViewTests(TestCase):
         self.assertContains(resp, self.service.name)
         self.assertContains(resp, self.service2.name)
 
+    def test_service_search(self):
+        resp = self.client.get(resolve())
+        self.assertEqual(resp.status_code, 200)
