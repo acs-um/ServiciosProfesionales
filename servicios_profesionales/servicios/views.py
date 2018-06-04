@@ -1,8 +1,14 @@
 from django.shortcuts import render
-from .models import Service
+from django.db.models import Q
+from . import models
 
 
 def index(request):
-    service_list = Service.objects.all()
-    context = {'service_list': service_list}
+    if 'search' in request.GET:
+        query = models.Service.objects.filter(
+            Q(name=request.GET['search']) | Q(tags__name__in=request.GET['search'])
+        ).distinct()
+        context = {'service_list': query}
+    else:
+        context = {'service_list': models.Service.objects.all()}
     return render(request, 'servicios/index.html', context)
