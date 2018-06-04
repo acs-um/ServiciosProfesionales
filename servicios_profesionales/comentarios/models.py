@@ -1,9 +1,9 @@
 from django.db import models
-#from usuarios.models import MyUser
-#from servicios.models import Service
+from usuarios.models import MyUser
+from servicios.models import Service
 
 # Create your models here.
-"""
+
 class Comment(models.Model):
     description = models.TextField()
     created_by = models.ForeignKey(MyUser, on_update=models.CASCADE) 
@@ -16,4 +16,3 @@ class Comment(models.Model):
 
     def __str__ (self):
         return "{},{},{}".format(self.description, self.created_by, self.update_at)
-        """
