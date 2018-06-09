@@ -31,8 +31,17 @@
             <div class="col-lg-4 mr-auto">
                 <td><small>{{ service.category }}</small></td>
             </div>
+            <div class="col-lg-4 mr-auto">
+                <td><a class="btn btn-info" href="{% url 'updateService' service.id %}">Edit</a> </td>
+            </div>
+            <div class="col-lg-4 mr-auto">
+                <td><a class="btn btn-danger" href="{% url 'deleteService' service.id %}">Borrar</a> </td>
+            </div>
             {% endfor %}
         </table>
+        <div>
+            <a class="btn btn-info" href="{% url 'createService' %}">Nuevo Servicio</a>
+        </div>
     </div>
   </div>
 </section>
