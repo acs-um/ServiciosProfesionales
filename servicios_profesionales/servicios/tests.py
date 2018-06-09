@@ -1,7 +1,7 @@
 from django.urls import reverse, resolve
 from django.test import TestCase
 
-
+from servicios.form import ServiceForm
 from servicios.models import Service
 from Categorias.models import Categoria
 
@@ -38,7 +38,18 @@ class ServiceViewTests(TestCase):
     def test_service_search(self):
         resp = self.client.get(reverse('all-services'), {'search': self.service2.name})
         self.assertEqual(resp.status_code, 200)
-
         self.assertEqual(resp.context["service_list"].count(), 1)
-
         self.assertContains(resp, self.service2.name)
+        
+    def test_form_service(self):
+        form = ServiceForm(data={
+            'name': self.service2.name,
+            'description': self.service2.description,
+            'category': self.categoria.id,
+            'tags': "futurma",
+        })
+        self.assertTrue(form.is_valid())
+        service = form.save()
+        resp = self.client.get(reverse('all-services'))
+        self.assertTrue(service in resp.context["service_list"])
+
