@@ -1,4 +1,4 @@
-from django.urls import reverse
+from django.urls import reverse, resolve
 from django.test import TestCase
 
 
@@ -36,5 +36,9 @@ class ServiceViewTests(TestCase):
         self.assertContains(resp, self.service2.name)
 
     def test_service_search(self):
-        resp = self.client.get(resolve())
+        resp = self.client.get(reverse('all-services'), {'search': self.service2.name})
         self.assertEqual(resp.status_code, 200)
+
+        self.assertEqual(resp.context["service_list"].count(), 1)
+
+        self.assertContains(resp, self.service2.name)
