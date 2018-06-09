@@ -4,7 +4,7 @@ from .models import Service
 class ServiceForm(forms.ModelForm):
     class Meta:
         model = Service
-        fields = ['name', 'description', 'category', 'tags', 'users' ]
+        fields = '__all__'
 
         widgets = {
             'name': forms.Textarea(attrs={'class': 'form-control'}),

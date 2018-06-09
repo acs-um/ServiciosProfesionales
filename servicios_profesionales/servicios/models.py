@@ -9,7 +9,7 @@ class Service(models.Model):
     description = models.TextField()
     category = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     tags = TaggableManager()
-    users = models.ManyToManyField(MyUser)
+    #users = models.ForeignKey(MyUser, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return "{},{}".format(self.name, self.category)
