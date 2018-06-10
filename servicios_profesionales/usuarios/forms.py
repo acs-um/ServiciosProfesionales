@@ -1,8 +1,13 @@
 from django import forms
 from django.contrib.auth.forms import UserChangeForm
 from django.forms import ModelForm
+from django.contrib.auth.decorators import login_required
+from django.views.generic.detail import SingleObjectMixin
+from django.views.generic import UpdateView
+from django.utils.decorators import method_decorator
 
-from usuarios.models import MyUser
+from usuarios.models import MyUser, Person
+
 
 class SignUpForm(ModelForm):
     email = forms.EmailField(required=True)
@@ -13,7 +18,7 @@ class SignUpForm(ModelForm):
         model = MyUser
         fields = ['email', 'date_of_birth', 'password', 'password_confirmation', 'first_name', 'last_name']
 
-    def clean_password_confirmation(self): #confirmamos que lo que ingreso esta bien
+    def clean_password_confirmation(self):  # confirmamos que lo que ingreso esta bien
         if self.data['password'] != self.data['password_confirmation']:
             raise forms.ValidationError('La contraseña no coincide')
         return self.data['password']
@@ -23,6 +28,13 @@ class SignUpForm(ModelForm):
         if user.exists():
             raise forms.ValidationError('Ya existe un usuario con ese email')
         return self.data['email']
+
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = Person
+        fields = '__all__'
+
 
 class EditPerfil(UserChangeForm):
     email = forms.EmailField(required=True)
@@ -36,6 +48,7 @@ class EditPerfil(UserChangeForm):
         if user.exists():
             raise forms.ValidationError('Ya existe un usuario con ese email')
         return self.data['email']
+
 
 class SetPasswordForm(forms.Form):
     new_password1 = forms.CharField(min_length=6, label=("New password"),
@@ -61,3 +74,34 @@ class SetPasswordForm(forms.Form):
         if commit:
             self.user.save()
         return self.user
+
+
+class ProfileObjectMixin(SingleObjectMixin):
+    """
+    Provides views with the current user's profile.
+    """
+    model = MyUser
+
+    def get_object(self):
+        """Return's the current users profile."""
+        try:
+            return self.request.user.get_profile()
+        except MyUser.DoesNotExist:
+            raise NotImplemented(
+                "What if the user doesn't have an associated profile?")
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        """Ensures that only authenticated users can access the view."""
+        klass = ProfileObjectMixin
+        return super(klass, self).dispatch(request, *args, **kwargs)
+
+
+class ProfileUpdateView(ProfileObjectMixin, UpdateView):
+    """
+    A view that displays a form for editing a user's profile.
+
+    Uses a form dynamically created for the `Profile` model and
+    the default model's update template.
+    """
+    pass  # That's All Folks!
