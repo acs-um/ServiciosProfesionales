@@ -28,6 +28,7 @@ from usuarios import urls
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   url(r'^usuarios/', include('usuarios.urls')),
+                  url(r'^comentario/', include('comments.urls')),
                   path('photologue/photo/add/', CreateView.as_view(model=Photo, fields='__all__'), name='add-photo'),
                   path('modificar/<pk>/', login_required(views.UpdateGalleryExtended.as_view()), name="updateGallery"),
                   path('photologue/', include('photologue.urls', namespace='photologue'), name='photologue'),
