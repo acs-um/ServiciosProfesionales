@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserChangeForm
 from django.forms import ModelForm
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic import UpdateView
@@ -33,7 +34,7 @@ class SignUpForm(ModelForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = Person
-        fields = '__all__'
+        fields = ['ocupation', 'tel', 'telcel', 'address', 'city', 'state']
 
 
 class EditPerfil(UserChangeForm):
@@ -74,34 +75,3 @@ class SetPasswordForm(forms.Form):
         if commit:
             self.user.save()
         return self.user
-
-
-class ProfileObjectMixin(SingleObjectMixin):
-    """
-    Provides views with the current user's profile.
-    """
-    model = MyUser
-
-    def get_object(self):
-        """Return's the current users profile."""
-        try:
-            return self.request.user.get_profile()
-        except MyUser.DoesNotExist:
-            raise NotImplemented(
-                "What if the user doesn't have an associated profile?")
-
-    @method_decorator(login_required)
-    def dispatch(self, request, *args, **kwargs):
-        """Ensures that only authenticated users can access the view."""
-        klass = ProfileObjectMixin
-        return super(klass, self).dispatch(request, *args, **kwargs)
-
-
-class ProfileUpdateView(ProfileObjectMixin, UpdateView):
-    """
-    A view that displays a form for editing a user's profile.
-
-    Uses a form dynamically created for the `Profile` model and
-    the default model's update template.
-    """
-    pass  # That's All Folks!

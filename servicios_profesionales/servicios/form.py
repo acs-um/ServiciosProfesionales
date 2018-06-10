@@ -1,6 +1,7 @@
 from django import forms
 from .models import Service
 
+
 class ServiceForm(forms.ModelForm):
     class Meta:
         model = Service
@@ -12,6 +13,3 @@ class ServiceForm(forms.ModelForm):
             'category': forms.TextInput(attrs={'class': 'form-control'}),
             'tags': forms.SelectMultiple(attrs={'class': 'form-control'}),
         }
-
-
-
