@@ -12,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth import authenticate, login
 from django.conf import urls
+from servicios.models import Service
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic import UpdateView
 from .forms import UserProfileForm
@@ -24,8 +25,10 @@ def signup(request):
         if form.is_valid():  # All validation rules pass
 
             # Save new user attributes
-            form.save()
-
+            user = form.save()
+            p = Person()
+            p.setUser(user)
+            p.save()
             return HttpResponseRedirect('http://localhost:8000/usuarios/login/')  # Redirect after POST
 
     else:
@@ -64,7 +67,8 @@ class SignOutView(LogoutView):
 def get_user_profile(request):
     user = MyUser.objects.get(email=request.user.email)
     person = Person.objects.get(user=user)
-    return render(request, 'accounts/profile/index.html', {"person": person})
+    service = Service.objects.filter(myuser=user)
+    return render(request, 'accounts/profile/index.html', {"person": person, "services": service})
 
 
 class ProfileObjectMixin(SingleObjectMixin):

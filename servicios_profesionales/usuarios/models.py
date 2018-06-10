@@ -20,7 +20,6 @@ class MyUserManager(BaseUserManager):  # maneja mi user en la bd
             first_name=first_name,
             last_name=last_name,
         )
-
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -130,3 +129,7 @@ class Person(models.Model):
         null=False
     )
     photo = models.ImageField
+
+    def setUser(self, user):
+        self.user = user
+        return self.save()
