@@ -22,8 +22,9 @@
                                     <li>Ciudad:{{person.city}}</li>
                                     <li>Provincia:{{person.state}}</li>
                                     <li>Foto:{{person.photo}}</li>
+                                    <br>
                                     <div class="col-lg-4 mr-auto">
-                                        <a class="btn btn-info" href="">Editar</a>
+                                        <a class="btn btn-info" href="{% url 'UpdatePerson' person.id %}">Editar</a>
                                     </div>
                                     </li>
                                 </h6>
@@ -32,6 +33,7 @@
                         </div>
                     </div>
                     <br>
+                    <h2>Mis servicios</h2>
                     <table>
                         <tr>
                             <div class="col-lg-4">
@@ -64,6 +66,13 @@
                                 </td>
                             </div>
                             {% endfor %}
+                        </tr>
+                        <tr>
+                            <td>
+                                <div>
+                                    <a class="btn btn-info" href="{% url 'createService' %}">Nuevo Servicio</a>
+                                </div>
+                            </td>
                         </tr>
                     </table>
             </div>

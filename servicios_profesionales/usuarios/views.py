@@ -5,8 +5,9 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required  # para la anotacion de loguin_required
 from django.http.response import HttpResponseRedirect
 from django.template.context import RequestContext
+from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .forms import SignUpForm, EditPerfil, SetPasswordForm, UserProfileForm, ProfileUpdateView
+from .forms import SignUpForm, EditPerfil, SetPasswordForm, UserProfileForm
 from .models import MyUser, Person
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -14,8 +15,7 @@ from django.contrib.auth import authenticate, login
 from django.conf import urls
 from servicios.models import Service
 from django.views.generic.detail import SingleObjectMixin
-from django.views.generic import UpdateView
-from .forms import UserProfileForm
+from django.views.generic import UpdateView, FormView
 from django.contrib.auth.views import login
 
 
@@ -53,13 +53,6 @@ def user_login(request):
             return redirect(urls.handler500)
 
 
-def updateUser(UpdateView):
-    model = MyUser
-    fields = '___add___'
-    form = ProfileUpdateView()
-    template_name = ''
-
-
 class SignOutView(LogoutView):
     pass
 
@@ -71,32 +64,14 @@ def get_user_profile(request):
     return render(request, 'accounts/profile/index.html', {"person": person, "services": service})
 
 
-class ProfileObjectMixin(SingleObjectMixin):
-    """
-    Provides views with the current user's profile.
-    """
-    model = MyUser
+class UpdatePerson(UpdateView):
+    model = Person
+    form = UserProfileForm()
+    form_class = UserProfileForm
+    template_name = 'accounts/profile/updatePerson.html'
 
-    def get_object(self):
-        """Return's the current users profile."""
-        try:
-            return self.request.user.get_profile()
-        except MyUser.DoesNotExist:
-            raise NotImplemented(
-                "What if the user doesn't have an associated profile?")
+    def form_valid(self, form):
+        return super().form_valid(form)
 
-    @method_decorator(login_required)
-    def dispatch(self, request, *args, **kwargs):
-        """Ensures that only authenticated users can access the view."""
-        klass = ProfileObjectMixin
-        return super(klass, self).dispatch(request, *args, **kwargs)
-
-
-class ProfileUpdateView(ProfileObjectMixin, UpdateView):
-    """
-    A view that displays a form for editing a user's profile.
-
-    Uses a form dynamically created for the `Profile` model and
-    the default model's update template.
-    """
-    pass  # That's All Folks!
+    def get_success_url(self):
+        return reverse('personDetails')
