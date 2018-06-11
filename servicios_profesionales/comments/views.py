@@ -7,18 +7,27 @@ from django.urls import reverse
 from django import forms
 from .form import CommentForm
 # Create your views here.
-"""class ServiceCommentList(ListView):
-    context_object_name = Comment
-    template_name = 'comments/comments_by_publisher.html/'
-    def get_queryset(self):
-        self.service = get_object_or_404(Service, name=self.kwargs['service'])
-        return Comment.objects.filter(service=self.service)"""
+
+
+class CommentList(ListView):
+    model = Comment
+    template_name = 'comments/listComments.html'
+
 
 class CommentsCreate(CreateView):
+    print("Entraste perro1")
     model = Comment
     fields = '__all__'
     form = CommentForm()
     template_name = "comments/createComments.html"
 
     def get_success_url(self):
+        print("Entraste perro2")
         return reverse('listComments')
+
+    def form_valid(self, form):
+        comment = form.save(commit=False)
+        comment.created_by = self.request.user
+        comment.save()
+        print("Entraste perro3")
+        return super(CommentsCreate, self).form_valid(form)

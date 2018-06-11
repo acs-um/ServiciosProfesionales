@@ -9,7 +9,7 @@ class Comment(models.Model):
     created_by = models.ForeignKey(MyUser, on_delete=models.CASCADE) 
     created_at = models.DateField(auto_now_add=True)
     update_at = models.DateField(auto_now=True)
-    service = models.ForeignKey(Service, on_delete=models.CASCADE)
+    service = models.ForeignKey(Service, on_delete=models.CASCADE, null=True)
        
     class Meta:
         ordering = ('created_at',)

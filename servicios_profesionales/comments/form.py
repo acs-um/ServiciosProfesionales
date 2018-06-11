@@ -8,5 +8,4 @@ class CommentForm(forms.ModelForm):
 
         widgets = {
             'description': forms.Textarea(attrs={'class': 'form-control'}),
-            'created_by': forms.
         }

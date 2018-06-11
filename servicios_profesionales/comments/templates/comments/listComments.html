@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="bg-primary text-white mb-0" id="service">
+  <div class="container">
+    <h2 class="text-center text-uppercase text-white">Comentarios</h2>
+      <table align="center">
+    <hr class="star-light mb-5">
+    <div class="row">
+            {% for comment in object_list %}
+            <tr>
+            <div class="col-lg-4 ml-auto">
+                <td><h5>{{ comment.description }}</h5></td>
+            </div>
+            <div class="col-lg-4 mr-auto">
+                <td><small>{{ comment.created_by }}</small></td>
+            </div>
+            {% endfor %}
+        </table>
+        <div>
+            <a class="btn btn-info" href="{% url 'createComments' %}">Nuevo Comentario</a>
+        </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
