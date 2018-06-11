@@ -71,10 +71,6 @@ class MyUser(AbstractBaseUser):
     def __str__(self):
         return self.email
 
-    def setService(self, service):
-        self.service = service
-        return self.save()
-
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"
         # Simplest possible answer: Yes, always

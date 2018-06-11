@@ -58,10 +58,10 @@ class SignOutView(LogoutView):
 
 
 def get_user_profile(request):
-    user = MyUser.objects.get(email=request.user.email)
-    person = Person.objects.get(user=user)
-    service = Service.objects.filter(myuser=user)
-    return render(request, 'accounts/profile/index.html', {"person": person, "services": service})
+    #user = MyUser.objects.get(email=request.user.email)
+    person = Person.objects.get(user=request.user)
+    return render(request, 'accounts/profile/index.html',
+                  {"person": person, "services": request.user.service_set.all()})
 
 
 class UpdatePerson(UpdateView):
