@@ -5,6 +5,7 @@ from .models import Service
 from .form import ServiceForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse
+from django.http.response import HttpResponseRedirect
 from photologue_custom.views import CreateExtendedGallery
 
 
@@ -30,7 +31,7 @@ class CreateService(CreateView):
         user = self.request.user
         user.setService(service)
         CreateExtendedGallery(user=user, service=service.id)
-        return super(CreateService, self).form_valid(form)
+        return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
         return reverse('all-services')
