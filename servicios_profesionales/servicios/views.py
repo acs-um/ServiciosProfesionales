@@ -6,7 +6,7 @@ from .form import ServiceForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse
 from django.http.response import HttpResponseRedirect
-from photologue_custom.views import CreateExtendedGallery
+from photologue_custom.models import GalleryExtended
 
 
 def index(request):
@@ -27,10 +27,10 @@ class CreateService(CreateView):
     template_name = "servicios/createService.html"
 
     def form_valid(self, form):
-        service = form.save()
-        user = self.request.user
-        user.setService(service)
-        CreateExtendedGallery(user=user, service=service.id)
+        service = form.save(commit=False)
+        service.user = self.request.user
+        service.save()
+        GalleryExtended.nuevo(service, self.request.user)
         return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):

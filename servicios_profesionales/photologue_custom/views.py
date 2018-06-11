@@ -11,12 +11,5 @@ class CreateExtendedGallery(CreateView):
     fields = ['title']
     template_name = "servicios/createService.html"
 
-    def __init__(self, user, service):
-        usuario = MyUser.objects.get(email=user)
-        servicio = Service.objects.get(id=service)
-        string = usuario.first_name + '-' + servicio.name
-        gallery = Gallery.objects.create(title=string, slug=string)
-        GalleryExtended.objects.create(user=usuario, gallery=gallery)
-
     def get_success_url(self):
         return reverse('all-services')
