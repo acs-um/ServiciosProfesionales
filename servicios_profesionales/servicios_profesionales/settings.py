@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'photologue',
     'sortedm2m',
     'taggit',
+    'photologue_custom'
 )
 
 SITE_ID = 1

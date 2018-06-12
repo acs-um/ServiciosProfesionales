@@ -1,5 +1,4 @@
 from django.db import models
-from servicios.models import Service
 from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser, AbstractUser)
 
 
@@ -58,7 +57,6 @@ class MyUser(AbstractBaseUser):
         max_length=30,
         blank=True,
     )
-    service = models.ForeignKey(Service, on_delete=models.CASCADE, blank=True, null=True)
 
     is_active = models.BooleanField(
         default=True)  # atributo que devuelve True si la cuenta de usuario está actualmente activa.
@@ -72,10 +70,6 @@ class MyUser(AbstractBaseUser):
 
     def __str__(self):
         return self.email
-
-    def setService(self, service):
-        self.service = service
-        return self.save()
 
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"
