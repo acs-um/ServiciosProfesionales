@@ -3,6 +3,7 @@ from django.contrib.auth.views import PasswordResetConfirmView
 from django.contrib.auth.decorators import login_required
 from . import views
 
+
 urlpatterns = [
     path('reset_password', login_required(PasswordResetConfirmView.as_view())),
     path('ingresar/', views.signup, name="SignUp"),
