@@ -1,8 +1,14 @@
 from django import forms
 from django.contrib.auth.forms import UserChangeForm
 from django.forms import ModelForm
+from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from django.views.generic.detail import SingleObjectMixin
+from django.views.generic import UpdateView
+from django.utils.decorators import method_decorator
 
-from usuarios.models import MyUser
+from usuarios.models import MyUser, Person
+
 
 class SignUpForm(ModelForm):
     email = forms.EmailField(required=True)
@@ -13,7 +19,7 @@ class SignUpForm(ModelForm):
         model = MyUser
         fields = ['email', 'date_of_birth', 'password', 'password_confirmation', 'first_name', 'last_name']
 
-    def clean_password_confirmation(self): #confirmamos que lo que ingreso esta bien
+    def clean_password_confirmation(self):  # confirmamos que lo que ingreso esta bien
         if self.data['password'] != self.data['password_confirmation']:
             raise forms.ValidationError('La contraseña no coincide')
         return self.data['password']
@@ -23,6 +29,13 @@ class SignUpForm(ModelForm):
         if user.exists():
             raise forms.ValidationError('Ya existe un usuario con ese email')
         return self.data['email']
+
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = Person
+        fields = ['ocupation', 'tel', 'telcel', 'address', 'city', 'state']
+
 
 class EditPerfil(UserChangeForm):
     email = forms.EmailField(required=True)
@@ -36,6 +49,7 @@ class EditPerfil(UserChangeForm):
         if user.exists():
             raise forms.ValidationError('Ya existe un usuario con ese email')
         return self.data['email']
+
 
 class SetPasswordForm(forms.Form):
     new_password1 = forms.CharField(min_length=6, label=("New password"),

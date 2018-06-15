@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="bg-primary text-white mb-0" id="service">
+  <div class="container">
+    <h2 class="text-center text-uppercase text-white">Resultados de la busqueda</h2>
+      <table align="center">
+    <hr class="star-light mb-5">
+    <div class="row">
+        <div class="col-lg-4">
+            <tr>
+                <td>
+                    <form action="/" method="GET">
+                        {% csrf_token %}
+                        <input name="search" placeholder="Buscar servicios.." id="buscador">
+                        <button type="submit" class="save btn btn-default">Buscar</button>
+                    </form>
+                </td>
+            </tr>
+        </div>
+        <div class="col-lg-4 ml-automl-auto">
+            <tr><td><h4><b>Servicio - {{ service.name }} </b></h4></td></tr>
+        </div>
+        <div class="col-lg-4 ml-auto">
+            <tr>
+            <td><b>Usuarios</b></td>
+        </div>
+            {% for user in users %}
+            <div class="col-lg-4 mr-auto">
+                <td>{{ user.name }}</td>
+            </div>
+            {% endfor %}</tr>
+        </table>
+    </div>
+  </div>
+</section>
+{% endblock %}

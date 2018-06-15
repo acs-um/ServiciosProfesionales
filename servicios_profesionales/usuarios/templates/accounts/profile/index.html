@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+<hr>
+<section id="login">
+    <div class="container">
+        <h2 class="text-center text-uppercase text-secondary mb-0">¡Perfil de usuario!</h2>
+        <hr class="star-dark mb-5">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <form method="post">
+                    <div class="control-group">
+                        <div class="form-group controls mb-0 pb-2">
+                            <hr>
+                            <h2>Datos de usuario</h2>
+                            <ul>
+                                <h6>
+                                    <li>Ocupación:{{person.ocupation}}</li>
+                                    <li>Telefono fijo:{{person.tel}}</li>
+                                    <li>Telefono celular:{{person.telcel}}</li>
+                                    <li>Dirección:{{person.address}}</li>
+                                    <li>Ciudad:{{person.city}}</li>
+                                    <li>Provincia:{{person.state}}</li>
+                                    <li>Foto:{{person.photo}}</li>
+                                    <br>
+                                    <div class="col-lg-4 mr-auto">
+                                        <a class="btn btn-info" href="{% url 'UpdatePerson' person.id %}">Editar</a>
+                                    </div>
+                                    </li>
+                                </h6>
+                            </ul>
+                            <hr>
+                        </div>
+                    </div>
+                    <br>
+                    <h2>Mis servicios</h2>
+                    <table>
+                        <tr>
+                            <div class="col-lg-4">
+                                <td>
+                                    <b>Servicio</b>
+                                </td>
+                            </div>
+                            <div class="col-lg-4">
+                                <td>
+                                    <b>Categoria</b>
+                                </td>
+                            </div>
+                        </tr>
+                        <tr>
+                            {% for service in services %}
+                        <tr>
+                            <div class="col-lg-4 ml-auto">
+                                <td><h3>{{ service.name }}</h3></td>
+                            </div>
+                            <div class="col-lg-4 mr-auto">
+                                <td>
+                                    <small>{{ service.category }}</small>
+                                </td>
+                            </div>
+                            <div class="col-lg-4 mr-auto">
+                                <td><a class="btn btn-info" href="{% url 'updateService' service.id %}">Editar</a></td>
+                            </div>
+                            <div class="col-lg-4 mr-auto">
+                                <td><a class="btn btn-danger" href="{% url 'deleteService' service.id %}">Borrar</a>
+                                </td>
+                            </div>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <td>
+                                <div>
+                                    <a class="btn btn-info" href="{% url 'createService' %}">Nuevo Servicio</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

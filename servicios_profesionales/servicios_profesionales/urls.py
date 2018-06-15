@@ -20,16 +20,15 @@ from django.conf import settings
 from django.views.static import serve
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
+from usuarios import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-     url(r'^registrar/', include('usuarios.urls')),
+    url(r'^usuarios/', include('usuarios.urls')),
     url(r'^photologue/', include('photologue.urls', namespace='photologue')),
     url(r'^servicios/', include('servicios.urls')),
     url(r'^$', TemplateView.as_view(template_name='index.html')),
     url(r'^media/(?P<path>.*)$', serve, {
             'document_root': settings.MEDIA_ROOT,
         }),
-    
-
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

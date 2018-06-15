@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="bg-primary text-white mb-0" id="service">
+  <div class="container">
+      <h2 class="text-center text-uppercase text-white">Servicios y Categorias</h2>
+    <div>
+      <form method="POST" class="form-horizontal">
+          {%csrf_token %}
+
+          <div class="form-group">
+            <label for="{{form.name.id_for_label}}" class="col-sm-2 control-label">{{form.name.label}}</label>
+            <div class="col-sm-8">
+              {{form.name}}
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="{{form.description.id_for_label}}" class="col-sm-2 control-label">{{form.description.label}}</label>
+            <div class="col-sm-8">
+              {{form.description}}
+            </div>
+          </div>
+          <div class="form-group">
+              <label for="{{form.category.id_for_label}}" class="col-sm-2 control-label">{{form.category.label}}</label>
+              <div class="col-sm-8">
+                {{form.category}}
+              </div>
+            </div>
+          <div class="form-group">
+            <label for="{{form.tags.id_for_label}}" class="col-sm-2 control-label">{{form.tags.label}}</label>
+            <div class="col-sm-8">
+              {{form.tags}}
+            </div>
+          </div>
+          <!--<div class="form-group">
+              <label for="{{form.users.id_for_label}}" class="col-sm-2 control-label">{{form.users.label}}</label>
+              <div class="col-sm-8">
+                {{form.users}}
+              </div>
+            </div>-->
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-8">
+                <input type="submit" class="save btn btn-default pull-right" name="submit" value="Guardar">
+            </div>
+          </div>
+
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}
