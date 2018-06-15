@@ -1,5 +1,5 @@
+from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser)
 from django.db import models
-from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser, AbstractUser)
 
 
 class MyUserManager(BaseUserManager):  # maneja mi user en la bd
@@ -57,7 +57,6 @@ class MyUser(AbstractBaseUser):
         max_length=30,
         blank=True,
     )
-
     is_active = models.BooleanField(
         default=True)  # atributo que devuelve True si la cuenta de usuario está actualmente activa.
     is_admin = models.BooleanField(default=False)
