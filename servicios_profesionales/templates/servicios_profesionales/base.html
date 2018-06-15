@@ -41,6 +41,7 @@
             Menu
             <i class="fa fa-bars"></i>
         </button>
+        <small>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item mx-0 mx-lg-1">
@@ -50,24 +51,19 @@
                     <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
                        href="http://localhost:8000/servicios/">Servicios</a>
                 </li>
-                <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">Sobre Nosotros</a>
-                </li>
-                <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Contacto</a>
-                </li>
                 <li>
                     {% if user.is_authenticated %}
-                    <small>Hola {{ user.email }}
-                        <a href="{% url 'sign_out' %}">Cerrar sesión</a>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'personDetails' %}">{{ user.email }}</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'sign_out' %}">Cerrar sesión</a></li>
                         {% else %}
-                        <a href="{% url 'SignUp' %}">Registrate</a>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'SignUp' %}">Sign Up!</a></li>
                         <hr>
-                        <a href="{% url 'EmailLogin' %}">Iniciar sesión</a></small>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'EmailLogin' %}">Log In!</a></li>
                     {% endif %}
                 </li>
             </ul>
         </div>
+        </small>
     </div>
 </nav>
 
@@ -86,28 +82,23 @@
                 <h4 class="text-uppercase mb-4">Visita nuestras Redes Sociales</h4>
                 <ul class="list-inline mb-0">
                     <li class="list-inline-item">
-                        <a class="btn btn-outline-light btn-social text-center rounded-circle" href="#">
+                        <a class="btn btn-outline-light btn-social text-center rounded-circle" href="https://www.facebook.com/">
                             <i class="fa fa-fw fa-facebook"></i>
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a class="btn btn-outline-light btn-social text-center rounded-circle" href="#">
+                        <a class="btn btn-outline-light btn-social text-center rounded-circle" href="https://www.google.com/">
                             <i class="fa fa-fw fa-google-plus"></i>
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a class="btn btn-outline-light btn-social text-center rounded-circle" href="#">
+                        <a class="btn btn-outline-light btn-social text-center rounded-circle" href="https://twitter.com/">
                             <i class="fa fa-fw fa-twitter"></i>
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a class="btn btn-outline-light btn-social text-center rounded-circle" href="#">
+                        <a class="btn btn-outline-light btn-social text-center rounded-circle" href="https://www.linkedin.com/">
                             <i class="fa fa-fw fa-linkedin"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a class="btn btn-outline-light btn-social text-center rounded-circle" href="#">
-                            <i class="fa fa-fw fa-dribbble"></i>
                         </a>
                     </li>
                 </ul>
