@@ -13,18 +13,26 @@
                         <div class="form-group controls mb-0 pb-2">
                             <hr>
                             <h2>Datos de usuario</h2>
+                            <br>
                             <ul>
                                 <h6>
                                     <li>Ocupación:{{person.ocupation}}</li>
+                                    <br>
                                     <li>Telefono fijo:{{person.tel}}</li>
+                                    <br>
                                     <li>Telefono celular:{{person.telcel}}</li>
+                                    <br>
                                     <li>Dirección:{{person.address}}</li>
+                                    <br>
                                     <li>Ciudad:{{person.city}}</li>
+                                    <br>
                                     <li>Provincia:{{person.state}}</li>
+                                    <br>
                                     <li>Foto:{{person.photo}}</li>
                                     <br>
                                     <div class="col-lg-4 mr-auto">
-                                        <a class="btn btn-info" href="{% url 'UpdatePerson' person.id %}">Editar</a>
+                                        <br>
+                                        <a class="btn btn-primary btn-block" href="{% url 'UpdatePerson' person.id %}">Editar</a>
                                     </div>
                                     </li>
                                 </h6>
@@ -34,6 +42,7 @@
                     </div>
                     <br>
                     <h2>Mis servicios</h2>
+                    <br>
                     <table>
                         <tr>
                             <div class="col-lg-4">
@@ -67,13 +76,14 @@
                             </div>
                             {% endfor %}
                         </tr>
-                        <tr>
+                            <tr>
                             <td>
                                 <div>
-                                    <a class="btn btn-info" href="{% url 'createService' %}">Nuevo Servicio</a>
+                                <br>    
+                                <a class="btn btn-primary btn-block" href="{% url 'createService' %}">Nuevo Servicio</a>
                                 </div>
                             </td>
-                        </tr>
+                        </tr> 
                     </table>
             </div>
         </div>
