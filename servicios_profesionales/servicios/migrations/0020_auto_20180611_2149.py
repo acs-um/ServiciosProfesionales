@@ -21,6 +21,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='service',
             name='category',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='photologue_custom.GalleryExtended'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='Categorias.Categoria'),
         ),
     ]
