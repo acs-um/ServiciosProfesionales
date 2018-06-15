@@ -5,7 +5,7 @@ from .models import Service
 from .form import ServiceForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse
-from django.http.response import HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from photologue_custom.models import GalleryExtended
 
 
