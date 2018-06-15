@@ -17,9 +17,8 @@ class GalleryExtended(models.Model):
     def __str__(self):
         return self.gallery.title
 
-
-@staticmethod
-def nuevo(service, user):
-    string = user.first_name + '-' + service.name
-    gallery = Gallery.objects.create(title=string, slug=string)
-    return (GalleryExtended.objects.create(gallery=gallery, service=service))
+    @staticmethod
+    def nuevo(service, user):
+        string = user.first_name + '-' + service.name
+        gallery = Gallery.objects.create(title=string, slug=string)
+        return (GalleryExtended.objects.create(gallery=gallery, user=user, service=service))
