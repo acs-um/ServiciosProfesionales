@@ -3,6 +3,7 @@
 <section class="bg-primary text-white mb-0" id="service">
   <div class="container">
     <h2 class="text-center text-uppercase text-white">Servicios y Categorias</h2>
+    <hr>
       <div>
           <form method="POST" class="post-form">
               {%csrf_token %}
@@ -10,7 +11,7 @@
               <h1 class="text-center text-danger">Desea eliminar el servicio {{ service.name }}</h1>
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-8">
-                    <input type="submit" class="save btn btn-danger pull-right" name="submit" value="Borrar">
+                    <input type="submit" class="save btn btn-danger" name="submit" value="Borrar">
                 </div>
               </div>
           </form>
