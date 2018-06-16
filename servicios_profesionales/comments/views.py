@@ -6,6 +6,9 @@ from servicios.models import Service
 from django.urls import reverse
 from django import forms
 from .form import CommentForm
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+from django.http.response import HttpResponseRedirect
 # Create your views here.
 
 
@@ -15,19 +18,17 @@ class CommentList(ListView):
 
 
 class CommentsCreate(CreateView):
-    print("Entraste perro1")
+    print("Entraste 1")
     model = Comment
-    fields = '__all__'
-    form = CommentForm()
+    form_class = CommentForm
     template_name = "comments/createComments.html"
-
-    def get_success_url(self):
-        print("Entraste perro2")
-        return reverse('listComments')
-
+  
     def form_valid(self, form):
         comment = form.save(commit=False)
         comment.created_by = self.request.user
         comment.save()
-        print("Entraste perro3")
-        return super(CommentsCreate, self).form_valid(form)
+        return HttpResponseRedirect(self.get_success_url())
+
+    def get_success_url(self):
+        print("Entraste 3")
+        return reverse('listComments')
