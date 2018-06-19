@@ -3,49 +3,60 @@
 <hr>
 <section class="bg-primary text-white mb-0" id="person">
     <div class="container">
-        <h2 class="text-center text-uppercase text-white">Editar datos</h2>
+        <h2 class="text-center text-uppercase text-white">Editar datos personales</h2>
+        <hr>
+        <br>
+        <br>
         <div>
             <form method="POST" class="form-horizontal">
                 {%csrf_token %}
-                <div class="form-group">
+                <div class="input-group">
                     <label for="{{form.ocupation}}">Ocupación:</label>
-                    <div class="col-sm-8">
-                        {{form.ocupation}}
-                    </div>
+                        <div class="col-sm-8">
+                            {{form.ocupation}}
+                        </div>
                 </div>
-                <div class="form-group">
+                <br>
+                <div class="input-group">
                     <label for={{form.tel}}>Teléfono:</label>
-                    <div class="col-sm-8">
-                        {{form.tel}}
-                    </div>
+                        <div class="col-sm-8">
+                            {{form.tel}}
+                        </div>
                 </div>
-                <div class="form-group">
+                <br>
+                <div class="input-group">
                     <label for={{form.telcel}}>Teléfono Movil:</label>
-                    <div class="col-sm-8">
-                        {{form.telcel}}
-                    </div>
+                        <div class="col-sm-8">
+                            {{form.telcel}}
+                        </div>
                 </div>
-                <div class="form-group">
+                <br>
+                <div class="input-group">
                     <label for={{form.address}}>Dirección:</label>
-                    <div class="col-sm-8">
-                        {{form.address}}
-                    </div>
+                        <div class="col-sm-8">
+                            {{form.address}}
+                        </div>
                 </div>
-                <div class="form-group">
+                <br>
+                <div class="input-group">
                     <label for={{form.city}}>{{form.city.label}}</label>
-                    <div class="col-sm-8">
-                        {{form.city}}
+                        <div class="col-sm-8">
+                            {{form.city}}
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
+                <br>
+                <div class="input-group">
                     <label for={{form.state}}>{{form.state.label}}</label>
                     <div class="col-sm-8">
                         {{form.state}}
                     </div>
                 </div>
-                <div class="form-group">
+                <br>
+                <br>
+                <div class="input-group">
                     <div class="col-sm-offset-2 col-sm-8">
-                        <input type="submit" class="save btn btn-default pull-right"
+                        <input type="submit" class="save btn btn-success btn-md"
                                name="submit" value="Guardar">
                     </div>
                 </div>

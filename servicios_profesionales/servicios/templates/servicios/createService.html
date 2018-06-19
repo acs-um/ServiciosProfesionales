@@ -2,8 +2,11 @@
 {% block content %}
 <section class="bg-primary text-white mb-0" id="service">
   <div class="container">
+    <br>
       <h2 class="text-center text-uppercase text-white">Servicios y Categorias</h2>
     <div>
+      <hr>
+      <br>
       <form method="POST" class="form-horizontal">
           {%csrf_token %}
 
@@ -37,9 +40,10 @@
                 {{form.users}}
               </div>
             </div>-->
+            <br>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-8">
-                <input type="submit" class="save btn btn-default pull-right" name="submit" value="Guardar">
+                <input type="submit" class="save btn btn-success" name="submit" value="Guardar">
             </div>
           </div>
 
