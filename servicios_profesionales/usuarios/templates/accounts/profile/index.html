@@ -76,14 +76,41 @@
                             </div>
                             {% endfor %}
                         </tr>
-                            <tr>
+                        <tr>
                             <td>
                                 <div>
-                                <br>    
-                                <a class="btn btn-primary btn-block" href="{% url 'createService' %}">Nuevo Servicio</a>
+                                    <br>
+                                    <a class="btn btn-primary btn-block" href="{% url 'createService' %}">Nuevo
+                                        Servicio</a>
                                 </div>
                             </td>
-                        </tr> 
+                        </tr>
+                    </table>
+                    <br>
+                    <hr>
+                    <h2>Mis galerías</h2>
+                    <br>
+                    <table>
+                        <tr>
+                            {% for gallery in gallery_list %}
+                        </tr>
+                        <tr>
+                            <div class="col-lg-4 ml-auto">
+                                <td><h3>{{ gallery }}</h3></td>
+                                <td><h3>{{ gallery.title }}</h3></td>
+                                <td>
+                                    <a href="{{ gallery.photo.get_absolute_url }}">
+                                        <img src="{{ gallery.photo.get_thumbnail_url }}" class="thumbnail"
+                                             alt="{{ gallery.photo.title }}">
+                                    </a>
+                                </td>
+                            </div>
+                            <div class="col-lg-4 mr-auto">
+                                <td><a class="btn btn-info"
+                                       href="{% url 'updateGallery' gallery.gallery.id %}">Editar</a></td>
+                            </div>
+                            {% endfor %}
+                        </tr>
                     </table>
             </div>
         </div>
