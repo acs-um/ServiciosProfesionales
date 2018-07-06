@@ -1,8 +1,8 @@
 from django.forms import ModelForm
-from .models import GalleryExtended
+from photologue.models import Gallery, Photo
 
 
 class GalleryExtendedForm(ModelForm):
     class Meta:
-        model = GalleryExtended
+        model = Gallery
         fields = '__all__'
