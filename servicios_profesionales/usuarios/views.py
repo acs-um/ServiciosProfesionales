@@ -7,6 +7,7 @@ from django.http.response import HttpResponseRedirect
 from django.template.context import RequestContext
 from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from photologue_custom.models import GalleryExtended
 from .forms import SignUpForm, EditPerfil, SetPasswordForm, UserProfileForm
 from .models import MyUser, Person
 from django.contrib.auth.decorators import login_required
@@ -58,10 +59,11 @@ class SignOutView(LogoutView):
 
 
 def get_user_profile(request):
-    user = MyUser.objects.get(email=request.user.email)
     person = Person.objects.get(user=request.user)
     return render(request, 'accounts/profile/index.html',
-                  {"person": person, "services": request.user.service_set.all()})
+                  {"person": person,
+                   "services": request.user.service_set.all(),
+                   "gallery_list": request.user.galleryextended_set.all()})
 
 
 class UpdatePerson(UpdateView):
