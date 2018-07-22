@@ -1,5 +1,6 @@
 from django.forms import ModelForm
-from photologue.models import Gallery, Photo
+
+from photologue.models import Gallery
 
 
 class GalleryExtendedForm(ModelForm):

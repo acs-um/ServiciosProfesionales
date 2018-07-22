@@ -1,4 +1,5 @@
 from django.db import models
+
 from usuarios.models import MyUser
 from Categorias.models import Categoria
 from taggit.managers import TaggableManager

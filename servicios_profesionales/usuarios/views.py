@@ -1,23 +1,14 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.views import LoginView, LogoutView
-from django.shortcuts import render_to_response
-from django.http import HttpResponse
-from django.contrib.auth.decorators import login_required  # para la anotacion de loguin_required
+from django.contrib.auth.views import LogoutView
 from django.http.response import HttpResponseRedirect
-from django.template.context import RequestContext
-from django.urls import reverse, reverse_lazy
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from photologue_custom.models import GalleryExtended
-from .forms import SignUpForm, EditPerfil, SetPasswordForm, UserProfileForm
-from .models import MyUser, Person
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
+from django.urls import reverse
 from django.contrib.auth import authenticate, login
 from django.conf import urls
-from servicios.models import Service
-from django.views.generic.detail import SingleObjectMixin
-from django.views.generic import UpdateView, FormView
+from django.views.generic import UpdateView
 from django.contrib.auth.views import login
+
+from .forms import SignUpForm, UserProfileForm
+from .models import Person
 
 
 def signup(request):

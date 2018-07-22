@@ -1,9 +1,12 @@
 from django.urls import reverse, resolve
 from django.test import TestCase
+from django.apps import apps
 
+from servicios.apps import ServiciosConfig
 from servicios.form import ServiceForm
 from servicios.models import Service
 from Categorias.models import Categoria
+
 
 class ServiceViewTests(TestCase):
 
@@ -11,6 +14,9 @@ class ServiceViewTests(TestCase):
         self.categoria = Categoria.objects.create(
             name='Construcción',
             description='Trabajos de construcción')
+        self.categoria2 = Categoria.objects.create(
+            name='Plomería',
+            description='Trabajos de plomería')
         self.service = Service.objects.create(
             name='Albañil',
             description='Servicios generales',
@@ -21,6 +27,10 @@ class ServiceViewTests(TestCase):
             description='Yesería en general',
             category=self.categoria
         )
+
+    def test_apps(self):
+        self.assertEqual(ServiciosConfig.name, 'servicios')
+        self.assertEqual(apps.get_app_config('servicios').name, 'servicios')
 
     def test_service_list(self):
         resp = self.client.get(reverse('all-services'))
@@ -40,7 +50,7 @@ class ServiceViewTests(TestCase):
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.context["service_list"].count(), 1)
         self.assertContains(resp, self.service2.name)
-        
+
     def test_form_service(self):
         form = ServiceForm(data={
             'name': self.service2.name,
@@ -53,3 +63,17 @@ class ServiceViewTests(TestCase):
         resp = self.client.get(reverse('all-services'))
         self.assertTrue(service in resp.context["service_list"])
 
+    def test_update_service(self):
+        form = ServiceForm(data={
+            'name': self.service2.name,
+            'description': self.service2.description,
+            'category': self.categoria.id,
+            'tags': "futurma",
+        })
+        self.assertTrue(form.is_valid())
+        response = self.client.post(reverse('updateService', kwargs={'pk': self.service.id}), {'form': form})
+        self.assertEqual(response.status_code, 302)
+
+    def test_delete_service(self):
+        response = self.client.post(reverse('deleteService', kwargs={'pk': self.service.id}))
+        self.assertEqual(response.status_code, 302)
