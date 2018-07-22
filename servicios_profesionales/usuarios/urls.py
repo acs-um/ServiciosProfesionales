@@ -1,8 +1,8 @@
 from django.urls import path, include
 from django.contrib.auth.views import PasswordResetConfirmView
 from django.contrib.auth.decorators import login_required
-from . import views
 
+from . import views
 
 urlpatterns = [
     path('reset_password', login_required(PasswordResetConfirmView.as_view())),

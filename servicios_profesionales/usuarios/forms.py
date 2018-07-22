@@ -1,11 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserChangeForm
 from django.forms import ModelForm
-from django.urls import reverse
-from django.contrib.auth.decorators import login_required
-from django.views.generic.detail import SingleObjectMixin
-from django.views.generic import UpdateView
-from django.utils.decorators import method_decorator
 
 from usuarios.models import MyUser, Person
 
