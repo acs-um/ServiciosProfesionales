@@ -4,6 +4,7 @@ from . import models
 from .models import Service
 from .form import ServiceForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import  DetailView
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from photologue_custom.models import GalleryExtended
@@ -18,6 +19,13 @@ def index(request):
     else:
         context = {'service_list': models.Service.objects.all()}
     return render(request, 'servicios/index.html', context)
+
+class DetailService(DetailView):
+    model = Service
+    template_name = 'servicios/detailService.html'
+
+    def get_success_url(self):
+        return reverse('all-services')
 
 
 class CreateService(CreateView):
