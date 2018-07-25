@@ -33,7 +33,7 @@
                 {% for service in service_list %}
                 <tr>
                     <div class="col-lg-4 ml-auto">
-                        <td><h5>{{ service.name }}</h5></td>
+                        <td><a style="color: #ffff" href="{% url 'detailService' service.id %}"><h5>{{ service.name }}</h5></a></td>
                     </div>
                     <div class="col-lg-4 mr-auto">
                         <td>

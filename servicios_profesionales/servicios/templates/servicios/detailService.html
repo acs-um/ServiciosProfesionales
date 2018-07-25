@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="bg-primary text-white mb-0" id="service">
+  <div class="container">
+    <br>
+      <h2 class="text-center text-uppercase text-white">Servicios y Categorias</h2>
+    <div>
+      <hr>
+      <br>
+      <dl class="dl-horizontal">
+          <dt>Nombre</dt>
+          <dd>{{ service.name }}</dd>
+          <dt>Descripcion</dt>
+          <dd>{{ service.description }}</dd>
+          <dt>Categoria</dt>
+          <dd>{{ service.category }}</dd>
+          <dt>Usuario</dt>
+          <dd>{{ service.user }}</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+{% endblock %}
