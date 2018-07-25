@@ -8,4 +8,5 @@ class CommentForm(forms.ModelForm):
 
         widgets = {
             'description': forms.Textarea(attrs={'class': 'form-control'}),
+            'service': forms.TextInput(attrs={'class': 'form-control'}),
         }

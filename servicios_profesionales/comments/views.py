@@ -18,9 +18,9 @@ class CommentList(ListView):
 
 
 class CommentsCreate(CreateView):
-    print("Entraste 1")
     model = Comment
-    form_class = CommentForm
+    fields = ['description', 'service']
+    form = CommentForm()
     template_name = "comments/createComments.html"
   
     def form_valid(self, form):
@@ -30,5 +30,4 @@ class CommentsCreate(CreateView):
         return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
-        print("Entraste 3")
         return reverse('listComments')
