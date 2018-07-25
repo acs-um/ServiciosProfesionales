@@ -6,11 +6,22 @@ from servicios.apps import ServiciosConfig
 from servicios.form import ServiceForm
 from servicios.models import Service
 from Categorias.models import Categoria
+from usuarios.models import MyUser, Person
 
 
 class ServiceViewTests(TestCase):
 
     def setUp(self):
+        self.user = MyUser.objects.create_user(
+            email="test@g.com",
+            date_of_birth="1995-01-02",
+            password="123123b",
+            first_name="Test",
+            last_name="Apellido"
+        )
+        self.person = Person.objects.create(
+            user=self.user
+        )
         self.categoria = Categoria.objects.create(
             name='Construcción',
             description='Trabajos de construcción')
@@ -62,6 +73,18 @@ class ServiceViewTests(TestCase):
         service = form.save()
         resp = self.client.get(reverse('all-services'))
         self.assertTrue(service in resp.context["service_list"])
+
+    def test_create_service(self):
+        form = ServiceForm(data={
+            'name': self.service2.name,
+            'description': self.service2.description,
+            'category': self.categoria.id,
+            'tags': "futurma",
+        })
+        self.assertTrue(form.is_valid())
+        self.client.login(username=self.user.email, password=self.user.password)
+        response = self.client.post(reverse('createService'), {'form': form})
+        self.assertEqual(response.status_code, 200)
 
     def test_update_service(self):
         form = ServiceForm(data={

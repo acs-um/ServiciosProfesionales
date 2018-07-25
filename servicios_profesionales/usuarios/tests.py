@@ -2,7 +2,7 @@ from django.test import TestCase, RequestFactory
 from django.urls import reverse, resolve
 
 from Categorias.models import Categoria
-from .forms import SignUpForm
+from .forms import SignUpForm, SetPasswordForm
 from .models import MyUser, Person
 from servicios.models import Service
 from .backends import EmailAuth
@@ -43,27 +43,12 @@ class SignUpViewTests(TestCase):
         self.assertEqual(EmailAuth.get_user(self, self.user.id), self.user)
         self.assertEqual(EmailAuth.get_user(self, 505), None)
         self.client.login(username=self.user.email, password=self.user.password)
-        response = self.client.post(reverse('personDetails'))
+        response = self.client.post(reverse('personDetails'), follow=True)
         self.assertEqual(response.status_code, 200)
-
-    """def get_user_profile(self):
-        response = self.client.post.reverse('personDetails')
-        self.assertContains(Service in response.context)
-        self.assertContains(Gallery in response.context)
-        self.assertContains(Person in response.context)
-
-    def person_test_form(self):
-        form = UserProfileForm(data={
-            'ocupation': 'test_ocupation',
-            'tel': '123456789',
-            'telcel': '987654321',
-            'address': 'test_address',
-            'city': 'city_test',
-            'state': 'state_test',
-        })
-        self.assertTrue(form.is_valid())
-        response = self.client.post(reverse('UpdatePerson'), {'form': form})
-        self.assertEqual(response.status_code, 200)"""
+        self.assertTrue("person" in response.context)
+        self.assertTrue("services" in response.context)
+        self.assertTrue("gallery_list" in response.context)
+        self.assertTemplateUsed(response, 'accounts/profile/index.html')
 
 
 class SignUpTest(TestCase):
@@ -92,7 +77,19 @@ class SignUpTest(TestCase):
             'last_name': "Apellido",
         })
         self.assertTrue(form.is_valid())
+        form.save()
         response = self.client.post(reverse('SignUp'), {form: form})
         self.assertEqual(response.status_code, 200)
+
         # Se comprueba que haya sido creado en la tabla User
-        # self.assertEqual(MyUser.objects.get(email="tessdt@g.com").count(), 1)
+        self.assertEqual(MyUser.objects.filter(email="tessdt@g.com").count(), 1)
+
+#    def test_SetPasswordForm_form(self):
+#        MyUser = self.user
+#        data = {
+#            'new_password1': "letrasy54654",
+#            'new_password2': "letrasy54654"
+#        }
+#        form = SetPasswordForm(MyUser, data)
+#        response = self.client.post(reverse('reset_password'), {'form': form})
+#        self.assertEqual(response.status_code, 200)
