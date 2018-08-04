@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from django.db.models import Q
-from . import models
-from .models import Service
-from .form import ServiceForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import  DetailView
 from django.urls import reverse
 from django.http import HttpResponseRedirect
+
+from . import models
+from .models import Service
+from .form import ServiceForm
 from photologue_custom.models import GalleryExtended
 
 

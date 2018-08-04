@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'photologue',
     'sortedm2m',
     'taggit',
+    'coverage',
     'photologue_custom'
 )
 

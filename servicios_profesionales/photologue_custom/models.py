@@ -1,4 +1,5 @@
 from django.db import models
+
 from usuarios.models import MyUser
 from servicios.models import Service
 from photologue.models import Gallery
@@ -21,4 +22,4 @@ class GalleryExtended(models.Model):
     def nuevo(service, user):
         string = user.first_name + '-' + service.name
         gallery = Gallery.objects.create(title=string, slug=string)
-        return (GalleryExtended.objects.create(gallery=gallery, user=user, service=service))
+        return GalleryExtended.objects.create(gallery=gallery, user=user, service=service)
