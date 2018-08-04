@@ -85,11 +85,10 @@ class SignUpTest(TestCase):
         self.assertEqual(MyUser.objects.filter(email="tessdt@g.com").count(), 1)
 
 #    def test_SetPasswordForm_form(self):
-#        MyUser = self.user
 #        data = {
 #            'new_password1': "letrasy54654",
 #            'new_password2': "letrasy54654"
 #        }
-#        form = SetPasswordForm(MyUser, data)
+#        form = SetPasswordForm(self.user, data)
 #        response = self.client.post(reverse('reset_password'), {'form': form})
 #        self.assertEqual(response.status_code, 200)
