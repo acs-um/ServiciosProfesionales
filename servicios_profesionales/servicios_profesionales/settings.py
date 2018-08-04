@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
@@ -25,19 +24,35 @@ SECRET_KEY = '7u1t+@)6wj(oq(1-+4sck#(ly-ziv=^oee*nc7068q0u39)(@n'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'usuarios.backends.EmailAuth'
+)
 
 # Application definition
 
-INSTALLED_APPS = [
+INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-]
+    'django.contrib.sites',
+    'usuarios.apps.UsuariosConfig',
+    'servicios',
+    'comentarios',
+    'Categorias',
+    'photologue',
+    'sortedm2m',
+    'taggit',
+    'coverage',
+    'photologue_custom'
+)
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -54,7 +69,8 @@ ROOT_URLCONF = 'servicios_profesionales.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['./templates/servicios_profesionales'],
+
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -62,6 +78,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -69,6 +86,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'servicios_profesionales.wsgi.application'
 
+LOGIN_REDIRECT_URL = '/usuarios/accounts/profile/'
+LOGIN_URL = '/usuarios/ingresar/login/'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
@@ -79,7 +98,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -99,7 +117,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
@@ -113,8 +130,18 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, '../static/')
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "../media/")
+MEDIA_URL = '/media/'
+
+AUTH_USER_MODEL = 'usuarios.MyUser'
+# Este par de puntos describe el nombre de la aplicación Django (que debe estar en su INSTALLED_APPS)
+# y el nombre del modelo Django que desea usar como modelo de usuario.
